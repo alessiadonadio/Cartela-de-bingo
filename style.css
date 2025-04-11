@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background: #f0f0f0;
+    background: #9b9595;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -33,15 +33,17 @@ body {
   }
   
   .bingo-card .header {
-    background-color: #4CAF50;
+    background-color: #2196F3; /* Azul */
     color: white;
     font-size: 28px;
     cursor: default;
   }
   
+  
   .free {
     background-color: #ffeb3b;
     color: #000;
+    font-size: 32px;
     cursor: default;
   }
   
