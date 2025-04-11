@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cartela de Bingo Interativa</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="bingo-card" id="bingoCard">
+    <div class="header">B</div>
+    <div class="header">I</div>
+    <div class="header">N</div>
+    <div class="header">G</div>
+    <div class="header">O</div>
+    <!-- Números serão gerados via JS -->
+  </div>
+
+  <script>
+    function gerarNumeros(inicio, fim, qtd) {
+      const nums = new Set();
+      while (nums.size < qtd) {
+        const num = Math.floor(Math.random() * (fim - inicio + 1)) + inicio;
+        nums.add(num);
+      }
+      return Array.from(nums);
+    }
+
+    const card = document.getElementById('bingoCard');
+    const colunas = [
+      gerarNumeros(1, 15, 5),     // B
+      gerarNumeros(16, 30, 5),    // I
+      gerarNumeros(31, 45, 5),    // N
+      gerarNumeros(46, 60, 5),    // G
+      gerarNumeros(61, 75, 5),    // O
+    ];
+
+    for (let linha = 0; linha < 5; linha++) {
+      for (let coluna = 0; coluna < 5; coluna++) {
+        const celula = document.createElement('div');
+
+        if (linha === 2 && coluna === 2) {
+          celula.textContent = 'Livre';
+          celula.classList.add('free');
+        } else {
+          celula.textContent = colunas[coluna][linha];
+          celula.addEventListener('click', () => {
+            celula.classList.toggle('marked');
+          });
+        }
+
+        card.appendChild(celula);
+      }
+    }
+  </script>
+</body>
+</html>
